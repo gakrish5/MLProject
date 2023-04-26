@@ -20,11 +20,10 @@ def clear_frame():
     global btn1, btn2
     for widgets in root.winfo_children():
       widgets.destroy()
-    title = Label(root, text = "DDOS Attack Detection Using Supervised Machine Learning Techniques", font=("Arial", 20),fg='red').place(x = 250, y = 60)
-    
-    uline = Label(root, text = "---------------------------------------------------------------", font=("Arial", 20),fg='red').place(x = 250, y = 95)
+    title = Label(root, text = "Web Attack Detection using Machine Learning Techniques", font=("Arial", 20),fg='red').place(x = 300, y = 60)
+    uline = Label(root, text = "-------------------------------------------------------------------", font=("Arial", 20),fg='red').place(x = 300, y = 95)
 
-    btn1 = Button(root, text = 'DDoS Atach Detector', font=("Arial", 10), bd = '5', width=20, height=2, command = ddos_home)
+    btn1 = Button(root, text = 'DDoS Atack Detector', font=("Arial", 10), bd = '5', width=20, height=2, command = ddos_home)
     btn2 = Button(root, text = "SQL Injection", bd='5', font=("Arial", 10), width=20, height=2, command=sql_inject)
 
 
@@ -37,8 +36,8 @@ def clear_frame():
 
 def home():
      
-    title = Label(root, text = "Web Attack Detection using Machine Learning", font=("Arial", 20),fg='red').place(x = 250, y = 60)
-    uline = Label(root, text = "---------------------------------------------------------------", font=("Arial", 20),fg='red').place(x = 250, y = 95)
+    title = Label(root, text = "Web Attack Detection using Machine Learning Techniques", font=("Arial", 20),fg='red').place(x = 300, y = 60)
+    uline = Label(root, text = "--------------------------------------------------------------------", font=("Arial", 20),fg='red').place(x = 300, y = 95)
 
     btn1 = Button(root, text = 'DDoS Atach Detector', font=("Arial", 10), bd = '5', width=20, height=2, command = ddos_home)
     btn2 = Button(root, text = "SQL Injection", bd='5', font=("Arial", 10), width=20, height=2, command=sql_inject)
