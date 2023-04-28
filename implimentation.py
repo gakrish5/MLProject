@@ -25,8 +25,8 @@ def clear_frame():
     global btn1, btn2
     for widgets in root.winfo_children():
       widgets.destroy()
-    title = Label(root, text = "Web Attack Detection using Machine Learning Techniques", font=("Arial", 20), fg='red').place(x = 300, y = 60)
-    uline = Label(root, text = "-------------------------------------------------------------------------------", font=("Arial", 20), fg='red').place(x = 300, y = 95)
+    title = Label(root, text = "Web Attack Detection using Machine Learning Techniques", font=("Arial", 20), fg='green').place(x = 300, y = 60)
+    uline = Label(root, text = "-------------------------------------------------------------------------------", font=("Arial", 20), fg='purple').place(x = 300, y = 95)
 
     btn1 = Button(root, text = 'DDoS Atack Detector', font=("Arial", 10), bd = '5', width=20, height=2, command = ddos_home)
     btn2 = Button(root, text = "SQL Injection", bd='5', font=("Arial", 10), width=20, height=2, command=sql_inject)
@@ -36,8 +36,8 @@ def clear_frame():
 
 
 def home():
-    title = Label(root, text = "Web Attack Detection using Machine Learning Techniques", font=("Arial", 20),fg='red').place(x = 300, y = 60)
-    uline = Label(root, text = "-------------------------------------------------------------------------------", font=("Arial", 20),fg='red').place(x = 300, y = 95)
+    title = Label(root, text = "Web Attack Detection using Machine Learning Techniques", font=("Arial", 20),fg='green').place(x = 300, y = 60)
+    uline = Label(root, text = "-------------------------------------------------------------------------------", font=("Arial", 20),fg='purple').place(x = 300, y = 95)
 
     btn1 = Button(root, text = 'DDoS Atach Detector', font=("Arial", 10), bd = '5', width=20, height=2, command = ddos_home)
     btn2 = Button(root, text = "SQL Injection", bd='5', font=("Arial", 10), width=20, height=2, command=sql_inject)
@@ -66,7 +66,7 @@ def icmp_form():
     icmp.destroy()
     tcp.destroy()
     udp.destroy()
-    head = Label(root, text = "Fill the below values to test {ICMP PROTOCOL}", font=("Arial", 12),fg='blue')
+    head = Label(root, text = "Fill the below values to test {ICMP PROTOCOL}", font=("Arial", 12),fg='red')
     head.place(x = 390, y = 160)
 
     duration = Label(root, text="Duration             ")
@@ -159,7 +159,7 @@ def tcp_form():
     icmp.destroy()
     tcp.destroy()
     udp.destroy()
-    head = Label(root, text = "Fill the below values to test TCP_SYNC Protocol", font=("Arial", 12),fg='blue').place(x = 380, y = 160)
+    head = Label(root, text = "Fill the below values to test TCP_SYNC Protocol", font=("Arial", 12),fg='red').place(x = 380, y = 160)
 
     service = Label(root, text="Service            ")
     service.place(x=400,y=360)
@@ -218,7 +218,7 @@ def udp_form():
     icmp.destroy()
     tcp.destroy()
     udp.destroy()
-    head = Label(root, text = "Fill the below values to test UDP Protocol", font=("Arial", 12),fg='blue').place(x = 380, y = 160)
+    head = Label(root, text = "Fill the below values to test UDP Protocol", font=("Arial", 12),fg='red').place(x = 380, y = 160)
 
     service = Label(root, text="Service       ")
     service.place(x=400,y=240)
@@ -268,13 +268,13 @@ def sql_inject():
     global sql_field
     btn1.destroy()
     btn2.destroy()
-    head = Label(root, text = "Paste the URL below to check for SQL Injection", font=("Arial", 12),fg='blue').place(x = 380, y = 160)
+    head = Label(root, text = "Paste the URL below to check for SQL Injection", font=("Arial", 12), fg='red').place(x = 470, y = 180)
     sql_field = Entry(root, width=60)  
-    sql_field.place(x=360, y= 210)
+    sql_field.place(x=450, y= 230)
     sql_btn=Button(root, text='Check', font=("Arial", 10), bd='5', width=15, command=sql_pred)
-    sql_btn.place(x=400, y= 240)
+    sql_btn.place(x=460, y= 270)
     home=Button(root, text='Back to Home', font=("Arial", 10), bd='5', width=15, command=clear_frame)
-    home.place(x=620, y=240)
+    home.place(x=670, y=270)
 
 
 def sql_pred():
@@ -282,8 +282,8 @@ def sql_pred():
     scan_sql_injection(st)
 
 
-title = Label(root, text = "Web Attack Detection using Machine Learning Techniques", font=("Arial", 20), fg='red').place(x = 300, y = 60)
-uline = Label(root, text = "-------------------------------------------------------------------------------", font=("Arial", 20), fg='red').place(x = 300, y = 95)
+title = Label(root, text = "Web Attack Detection using Machine Learning Techniques", font=("Arial", 20), fg='green').place(x = 300, y = 60)
+uline = Label(root, text = "-------------------------------------------------------------------------------", font=("Arial", 20), fg='purple').place(x = 300, y = 95)
 
 btn1 = Button(root, text = 'DDoS Atach Detector', font=("Arial", 10), bd = '5', width=20, height=2, command = ddos_home)
 btn2 = Button(root, text = "SQL Injection", bd='5', font=("Arial", 10), width=20, height=2, command=sql_inject)
