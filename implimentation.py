@@ -1,64 +1,65 @@
 from tkinter import *
 from tkinter import messagebox
-
 import joblib
-
 from sql_injection import scan_sql_injection
+
 
 icmp_model = joblib.load('model/icmp_new.ml')
 tcp_sync_model= joblib.load('model/tcp_sync_new.ml')
 udp_model= joblib.load('model/udp_new.ml')
 
+
 main=Tk()
-main.geometry('1080x650')
-root = Frame(main)
+
+
+# main.geometry('1080x650')
+width = main.winfo_screenwidth()
+height = main.winfo_screenheight()
+
+# root = Frame(main)
+root = Frame(main, width=width, height=height)
 root.pack(side="top", expand=True, fill="both")
        
-
 
 def clear_frame():
     global btn1, btn2
     for widgets in root.winfo_children():
       widgets.destroy()
-    title = Label(root, text = "Web Attack Detection using Machine Learning Techniques", font=("Arial", 20),fg='red').place(x = 300, y = 60)
-    uline = Label(root, text = "-------------------------------------------------------------------", font=("Arial", 20),fg='red').place(x = 300, y = 95)
+    title = Label(root, text = "Web Attack Detection using Machine Learning Techniques", font=("Arial", 20), fg='red').place(x = 300, y = 60)
+    uline = Label(root, text = "-------------------------------------------------------------------------------", font=("Arial", 20), fg='red').place(x = 300, y = 95)
 
     btn1 = Button(root, text = 'DDoS Atack Detector', font=("Arial", 10), bd = '5', width=20, height=2, command = ddos_home)
     btn2 = Button(root, text = "SQL Injection", bd='5', font=("Arial", 10), width=20, height=2, command=sql_inject)
 
-
-
-    btn1.place(x=300,y=200)
-    btn2.place(x=600,y=200)
-
-
+    btn1.place(x=400,y=200)
+    btn2.place(x=700,y=200)
 
 
 def home():
-     
     title = Label(root, text = "Web Attack Detection using Machine Learning Techniques", font=("Arial", 20),fg='red').place(x = 300, y = 60)
-    uline = Label(root, text = "--------------------------------------------------------------------", font=("Arial", 20),fg='red').place(x = 300, y = 95)
+    uline = Label(root, text = "-------------------------------------------------------------------------------", font=("Arial", 20),fg='red').place(x = 300, y = 95)
 
     btn1 = Button(root, text = 'DDoS Atach Detector', font=("Arial", 10), bd = '5', width=20, height=2, command = ddos_home)
     btn2 = Button(root, text = "SQL Injection", bd='5', font=("Arial", 10), width=20, height=2, command=sql_inject)
 
-
-
-    btn1.place(x=300,y=200)
-    btn2.place(x=600,y=200)
+    btn1.place(x=400,y=200)
+    btn2.place(x=700,y=200)
 
 
 def ddos_home():
-
     global icmp, tcp, udp
     btn1.destroy()
     btn2.destroy()
+
     icmp=Button(root, text = "Test for ICMP protocol",font=("Arial", 10), width=25, height=1, command=icmp_form)
-    icmp.place(x=400, y=200)
+    icmp.place(x=550, y=200)
+
     tcp= Button(root, text = "Test for TCP_SYNC protocol", font=("Arial", 10), width=25, height=1, command=tcp_form)
-    tcp.place(x=400, y=300)
+    tcp.place(x=550, y=300)
+
     udp= Button(root, text = "Test for UDP protocol", font=("Arial", 10), width=25, height=1, command=udp_form)
-    udp.place(x=400, y=400)
+    udp.place(x=550, y=400)
+
 
 def icmp_form():
     global duration_field,service_field,wrong_frag_field, srcbytes_field, cnt_field, urgent_field,num_cmp_field, srv_cnt_field
@@ -132,6 +133,7 @@ def icmp_form():
     home=Button(root, text='Back to Home', font=("Arial", 10), bd='5', width=15, command=clear_frame)
     home.place(x=620, y=540)
 
+
 def icmp_pred():
     service_d={"eco_i":-0.1,"ecr_i":0.0, "tim_i":0.1, "urp_i":0.2}
     #wrong_frag_d={'yes':1,'no':0}
@@ -166,7 +168,6 @@ def tcp_form():
     service_range = Label(root, text="[-2.80 to 2.80]")
     service_range.place(x=680,y=360)
 
-
     srcbytes = Label(root, text="Src_Bytes       ")
     srcbytes.place(x=400,y=280)
     srcbytes_options = [0,   132,     1,   151,   183,   261,   190,  1256,   156,  209,   336,   122, 27472]
@@ -174,8 +175,6 @@ def tcp_form():
     srcbytes_field.set( "Select the option")
     srcbytes_drop = OptionMenu( root , srcbytes_field , *srcbytes_options )
     srcbytes_drop.place(x=550, y=280)
-    
-
 
     serror_rate = Label(root, text="SError Rate            ")
     serror_rate.place(x=400,y=320)
@@ -184,14 +183,12 @@ def tcp_form():
     serror_rate_range = Label(root, text="[0.00-1.00]")
     serror_rate_range.place(x=680,y=320)
 
-
     cnt = Label(root, text="Count      ")
     cnt.place(x=400,y=200)
     cnt_field = Entry(root)
     cnt_field.place(x=550, y= 200)
     cnt_range = Label(root, text="[1-511]")
     cnt_range.place(x=680,y=200)
-
 
     srv_cnt = Label(root, text="Srv_count      ")
     srv_cnt.place(x=400,y=240)
@@ -206,6 +203,7 @@ def tcp_form():
     home=Button(root, text='Back to Home', font=("Arial", 10), bd='5', width=15, command=clear_frame)
     home.place(x=620, y=420)
 
+
 def udp_pred():
     ft_l=[dst_host_srv_cnt_field.get(), service_field.get(), srcbytes_field.get(), dst_host_srv_cnt_field.get(), cnt_field.get()] 
     l=udp_model.predict([ft_l])
@@ -214,13 +212,13 @@ def udp_pred():
     else:
         messagebox.showwarning("showwarning", "Attack Found in UDP Protocol")   
 
+
 def udp_form():
     global service_field, srcbytes_field, dst_bytes_field, cnt_field, dst_host_srv_cnt_field 
     icmp.destroy()
     tcp.destroy()
     udp.destroy()
     head = Label(root, text = "Fill the below values to test UDP Protocol", font=("Arial", 12),fg='blue').place(x = 380, y = 160)
-
 
     service = Label(root, text="Service       ")
     service.place(x=400,y=240)
@@ -230,9 +228,6 @@ def udp_form():
     service_drop = OptionMenu( root , service_field , *service_options )
     service_drop.place(x=550, y=240)
 
-
-
-
     srcbytes = Label(root, text="Src_Bytes       ")
     srcbytes.place(x=400,y=290)
     srcbytes_options = [0,   132,     1,   151,   183,   261,   190,  1256,   156,  209,   336,   122, 27472]
@@ -241,8 +236,6 @@ def udp_form():
     srcbytes_drop = OptionMenu( root , srcbytes_field , *srcbytes_options )
     srcbytes_drop.place(x=550, y=290)
     
-
-
     dst_bytes = Label(root, text="DST Bytes            ")
     dst_bytes.place(x=400,y=200)
     dst_bytes_field = Entry(root)
@@ -250,14 +243,12 @@ def udp_form():
     dst_bytes_range = Label(root, text="[0 - 516]")
     dst_bytes_range.place(x=680,y=200)
 
-
     cnt = Label(root, text="Count      ")
     cnt.place(x=400,y=400)
     cnt_field = Entry(root)
     cnt_field.place(x=550, y= 400)
     cnt_range = Label(root, text="[1-511]")
     cnt_range.place(x=680,y=400)
-
 
     dst_host_srv_cnt = Label(root, text="DST_Host_Srv_count      ")
     dst_host_srv_cnt.place(x=400,y=350)
@@ -273,7 +264,6 @@ def udp_form():
     home.place(x=620, y=460)
 
     
-    
 def sql_inject():
     global sql_field
     btn1.destroy()
@@ -286,21 +276,18 @@ def sql_inject():
     home=Button(root, text='Back to Home', font=("Arial", 10), bd='5', width=15, command=clear_frame)
     home.place(x=620, y=240)
 
+
 def sql_pred():
     st=sql_field.get()
     scan_sql_injection(st)
 
 
-
- 
-title = Label(root, text = "Web Attack Detection using Machine Learning", font=("Arial", 20),fg='red').place(x = 250, y = 60)
-uline = Label(root, text = "---------------------------------------------------------------", font=("Arial", 20),fg='red').place(x = 250, y = 95)
+title = Label(root, text = "Web Attack Detection using Machine Learning Techniques", font=("Arial", 20), fg='red').place(x = 300, y = 60)
+uline = Label(root, text = "-------------------------------------------------------------------------------", font=("Arial", 20), fg='red').place(x = 300, y = 95)
 
 btn1 = Button(root, text = 'DDoS Atach Detector', font=("Arial", 10), bd = '5', width=20, height=2, command = ddos_home)
 btn2 = Button(root, text = "SQL Injection", bd='5', font=("Arial", 10), width=20, height=2, command=sql_inject)
 
-
-
-btn1.place(x=300,y=200)
-btn2.place(x=600,y=200)
+btn1.place(x=400,y=200)
+btn2.place(x=700,y=200)
 main.mainloop()
