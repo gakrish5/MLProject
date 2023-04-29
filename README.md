@@ -1,6 +1,6 @@
-# MLProject
+# CS5710 Machine Learning - Final Project (CRN 22037)
 
-## DDOS Attack Detection Using Supervised Machine Learning Techniques
+## Title: DDOS Attack Detection Using Supervised Machine Learning Techniques
 
 ### Group Member Information.
 Aravinda Krishna Gorantla - 700741775 <br />
